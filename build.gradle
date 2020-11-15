@@ -32,6 +32,7 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.4'
 	compile group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+	compile('org.springframework.boot:spring-boot-devtools')
 }
 
 test {
