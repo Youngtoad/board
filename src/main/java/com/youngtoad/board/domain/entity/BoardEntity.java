@@ -18,17 +18,17 @@ public class BoardEntity extends TimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=10,nullable = false)
+    @Column(length=10, nullable = false)
     private String writer;
 
-    @Column(length=100,nullable = false)
+    @Column(length=100, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT",nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
     @Builder
-    public BoardEntity(Long id,String title, String content, String writer){
+    public BoardEntity(Long id, String title, String content, String writer){
         this.id = id;
         this.writer = writer;
         this.title = title;
