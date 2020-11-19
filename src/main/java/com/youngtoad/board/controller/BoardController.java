@@ -58,6 +58,16 @@ public class BoardController {
         return "redirect:/";
     }
 
+    //게시글 검색
+    @GetMapping("/board/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model){
+        List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
+
+        model.addAttribute("boardList", boardDtoList);
+
+        return "board/list.html";
+    }
+
     @GetMapping("/post")
     public String write(){
         return "board/write.html";

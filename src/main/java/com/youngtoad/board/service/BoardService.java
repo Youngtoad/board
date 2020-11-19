@@ -52,6 +52,32 @@ public class BoardService {
     }
 
     @Transactional
+    public List<BoardDto> searchPosts(String keyword){
+        List<BoardEntity> boardEntities = boardRepository.findByTitleContaining(keyword);
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        if(boardEntities.isEmpty()){
+            return boardDtoList;
+        }
+
+        for(BoardEntity boardEntity : boardEntities){
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
+        }
+
+        return boardDtoList;
+    }
+
+    private BoardDto convertEntityToDto(BoardEntity boardEntity){
+        return BoardDto.builder()
+                .id(boardEntity.getId())
+                .title(boardEntity.getTitle())
+                .content(boardEntity.getContent())
+                .writer(boardEntity.getWriter())
+                .createdDate(boardEntity.getCreatedDate())
+                .build();
+    }
+
+    @Transactional
     public Long savePost(BoardDto boardDto){
         return boardRepository.save(boardDto.toEntity()).getId();
     }
