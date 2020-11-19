@@ -14,11 +14,14 @@ import java.util.List;
 public class BoardController {
     private BoardService boardService;
 
+    //게시글 목록
     @GetMapping("/")
-    public String list(Model model) {
-        List<BoardDto> boardList = boardService.getBoardList();
+    public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<BoardDto> boardList = boardService.getBoardList(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardList);
+        model.addAttribute("pageList", pageList);
         return "board/list.html";
 
     }
@@ -67,6 +70,7 @@ public class BoardController {
 
         return "board/list.html";
     }
+
 
     @GetMapping("/post")
     public String write(){

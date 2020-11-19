@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th = "http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -43,6 +43,12 @@
     </tbody>
 </table>
 
+<div>
+    <span th:each="pageNum : ${pageList}" th:inline="text">
+        <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+    </span>
+</div>
+
 <!-- 검색 form -->
 <form action="/board/search" method="GET">
     <div>
@@ -50,7 +56,6 @@
     </div>
     <button>검색하기</button>
 </form>
-
 
 <!-- FOOTER -->
 <div th:insert="common/footer.html" id="footer"></div>
